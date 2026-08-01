@@ -35,7 +35,9 @@ export const AnnouncementCard: React.FC<AnnouncementCardProps> = ({
   const handleSpeak = () => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(announcementText);
+      // Remove the phonetic hints in parentheses before reading aloud
+      const textToSpeak = announcementText.replace(/\s*\([^)]*\)/g, '');
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.rate = 0.95;
       utterance.onend = () => setIsSpeaking(false);
       setIsSpeaking(true);
