@@ -116,12 +116,29 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ settings, onSaveSe
           </label>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-          <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
-          <button className="btn btn-primary" onClick={handleSave}>
-            <Check size={16} />
-            <span>Save Preferences</span>
+        <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '24px 0 16px' }} />
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <button
+            className="btn btn-danger"
+            style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: 700 }}
+            onClick={() => {
+              if (window.confirm('Are you sure you want to erase all saved games, rosters, and settings? This will restore the app to its original state.')) {
+                localStorage.clear();
+                window.location.reload();
+              }
+            }}
+          >
+            Reset All App Data
           </button>
+          
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <button className="btn btn-secondary" onClick={onClose}>Cancel</button>
+            <button className="btn btn-primary" onClick={handleSave}>
+              <Check size={16} />
+              <span>Save Preferences</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
