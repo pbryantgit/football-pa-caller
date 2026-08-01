@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GameState, Team } from '../../types';
 import { formatFieldPosition } from '../../utils/fieldMath';
-import { Volume2, Settings as SettingsIcon, History, Shield, Users, RotateCcw, Edit2, Check, ArrowRightLeft } from 'lucide-react';
+import { Volume2, Settings as SettingsIcon, History, Shield, Users, RotateCcw, Edit2, Check, ArrowRightLeft, Telescope } from 'lucide-react';
 
 interface HeaderProps {
   gameState: GameState;
@@ -9,6 +9,7 @@ interface HeaderProps {
   onUpdateGameState: (state: GameState) => void;
   onOpenNewGame: () => void;
   onOpenRoster: () => void;
+  onOpenSpotter: () => void;
   onOpenHistory: () => void;
   onOpenSettings: () => void;
   onUndoLastPlay: () => void;
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   onUpdateGameState,
   onOpenNewGame,
   onOpenRoster,
+  onOpenSpotter,
   onOpenHistory,
   onOpenSettings,
   onUndoLastPlay,
@@ -106,6 +108,10 @@ export const Header: React.FC<HeaderProps> = ({
           <button className="btn btn-secondary" onClick={onOpenRoster}>
             <Users size={16} />
             <span>Rosters</span>
+          </button>
+          <button className="btn btn-secondary" onClick={onOpenSpotter}>
+            <Telescope size={16} color="#facc15" />
+            <span>Spotter</span>
           </button>
           <button className="btn btn-secondary" onClick={onOpenHistory}>
             <History size={16} />

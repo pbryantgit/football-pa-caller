@@ -11,6 +11,7 @@ import { RosterModal } from './components/Roster/RosterModal';
 import { NewGameModal } from './components/NewGame/NewGameModal';
 import { HistoryDrawer } from './components/History/HistoryDrawer';
 import { SettingsModal } from './components/Settings/SettingsModal';
+import { SpotterBoardModal } from './components/SpotterBoard/SpotterBoardModal';
 
 export const App: React.FC = () => {
   // Persistent State
@@ -27,7 +28,7 @@ export const App: React.FC = () => {
   const [announcementText, setAnnouncementText] = useState<string>('');
 
   // Active Modals
-  const [activeModal, setActiveModal] = useState<'newGame' | 'roster' | 'history' | 'settings' | null>(null);
+  const [activeModal, setActiveModal] = useState<'newGame' | 'roster' | 'spotter' | 'history' | 'settings' | null>(null);
 
   // Auto-Save listeners
   useEffect(() => {
@@ -156,6 +157,7 @@ export const App: React.FC = () => {
         onUpdateGameState={handleUpdateGameState}
         onOpenNewGame={() => setActiveModal('newGame')}
         onOpenRoster={() => setActiveModal('roster')}
+        onOpenSpotter={() => setActiveModal('spotter')}
         onOpenHistory={() => setActiveModal('history')}
         onOpenSettings={() => setActiveModal('settings')}
         onUndoLastPlay={handleUndoLastPlay}
@@ -211,6 +213,14 @@ export const App: React.FC = () => {
         <RosterModal
           teams={teams}
           onSaveTeams={setTeams}
+          onClose={() => setActiveModal(null)}
+        />
+      )}
+
+      {activeModal === 'spotter' && (
+        <SpotterBoardModal
+          gameState={gameState}
+          teams={teams}
           onClose={() => setActiveModal(null)}
         />
       )}
