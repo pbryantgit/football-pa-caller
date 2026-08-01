@@ -51,6 +51,11 @@ export const JerseyGrid: React.FC<JerseyGridProps> = ({
               onClick={() => onSelectPlayer(player)}
               title={`${player.displayName} (${player.position || 'Player'})`}
             >
+              {team.defaultQuarterbackPlayerId === player.id && (
+                <span style={{ position: 'absolute', top: '-6px', right: '-6px', background: '#3b82f6', color: 'white', fontSize: '0.55rem', fontWeight: 800, padding: '2px 4px', borderRadius: '4px', border: '1px solid white', zIndex: 1 }}>
+                  QB
+                </span>
+              )}
               <span>{player.jerseyNumber}</span>
               <span className="sub-name">{player.lastName || player.displayName.split(' ')[0]}</span>
             </button>
