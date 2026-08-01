@@ -31,7 +31,20 @@ export const SpotterBoardModal: React.FC<SpotterBoardModalProps> = ({ gameState,
 
   const selectedPlayers = selectedIds
     .map(id => getPlayerDetails(id))
-    .filter((res): res is {player: Player, team: Team} => res !== null);
+    .filter((res): res is {player: Player, team: Team} => res !== null)
+    .sort((a, b) => {
+      // Left team always on top
+      const isALeft = a.team.id === gameState.leftFieldTeamId;
+      const isBLeft = b.team.id === gameState.leftFieldTeamId;
+      
+      if (isALeft && !isBLeft) return -1;
+      if (!isALeft && isBLeft) return 1;
+      
+      // If they are on the same team, sort numerically
+      const numA = parseInt(a.player.jerseyNumber, 10) || 0;
+      const numB = parseInt(b.player.jerseyNumber, 10) || 0;
+      return numA - numB;
+    });
 
   const renderGrid = (team: Team) => {
     const activePlayers = [...team.roster]
