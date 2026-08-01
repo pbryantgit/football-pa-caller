@@ -3,11 +3,14 @@
   "private": true,
   "version": "2.0.0",
   "type": "module",
+  "homepage": "https://pbryantgit.github.io/football-pa-caller",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "predeploy": "npm run build && echo. > dist\\.nojekyll",
+    "deploy": "gh-pages -d dist --dotfiles"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
@@ -20,6 +23,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "gh-pages": "^6.3.0",
     "typescript": "^5.6.3",
     "vite": "^6.0.1",
     "vitest": "^2.1.5"

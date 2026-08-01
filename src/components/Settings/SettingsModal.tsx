@@ -98,6 +98,22 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ settings, onSaveSe
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>e.g. "Spartans" vs "South Paulding"</div>
             </div>
           </label>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={localSettings.showPhoneticHints}
+              onChange={() => toggleField('showPhoneticHints')}
+              style={{ width: '18px', height: '18px' }}
+            />
+            <div>
+              <div style={{ fontWeight: 700 }}>Show Phonetic Pronunciation</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                Appends phonetic spelling after player names — e.g. "#72 Kowalczyk (koh-WAL-chik)".<br />
+                Set each player's phonetic spelling in Rosters.
+              </div>
+            </div>
+          </label>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>

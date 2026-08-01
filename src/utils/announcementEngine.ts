@@ -28,7 +28,15 @@ export function formatPlayer(
   if (!settings.includePlayerNames) {
     return numStr;
   }
-  return `${numStr} ${player.displayName}`;
+
+  const name = player.displayName;
+  // Append phonetic hint in parentheses when enabled and available
+  const phonetic =
+    settings.showPhoneticHints && player.phoneticPronunciation
+      ? ` (${player.phoneticPronunciation})`
+      : '';
+
+  return `${numStr} ${name}${phonetic}`;
 }
 
 export function formatTeamName(team: Team | undefined, settings: AnnouncementSettings): string {
