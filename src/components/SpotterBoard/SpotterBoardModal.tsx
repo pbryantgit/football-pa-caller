@@ -144,9 +144,9 @@ export const SpotterBoardModal: React.FC<SpotterBoardModalProps> = ({ gameState,
 
           {/* Right Column: Number Grids */}
           <div style={{ flex: 1, display: 'flex', gap: '24px', overflowY: 'auto', paddingRight: '8px' }}>
-            {renderGrid(awayTeam)}
+            {renderGrid(teams[gameState.leftFieldTeamId])}
             <div style={{ width: '1px', background: 'var(--border-color)' }}></div>
-            {renderGrid(homeTeam)}
+            {renderGrid(teams[gameState.rightFieldTeamId])}
           </div>
           
         </div>
